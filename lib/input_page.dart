@@ -15,30 +15,11 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  
+  Gender? selectedgender;
   Color malecardcolour = kinactivecardcolour;
   Color femalecardcolour = kinactivecardcolour;
   
-  void updatecolour(Gender selectedgender) {
-    if (selectedgender==Gender.male) {
-      if (malecardcolour == kinactivecardcolour) {
-        malecardcolour = kactivecardcolour;
-        femalecardcolour = kinactivecardcolour;
-      }
-      else{malecardcolour=kinactivecardcolour;}
-    }
-    if(selectedgender==Gender.female){
-      if (femalecardcolour == kinactivecardcolour) {
-        femalecardcolour = kactivecardcolour;
-        malecardcolour = kinactivecardcolour;
-      }
-      else{femalecardcolour=kinactivecardcolour;}
-
-    }
-    
-  }
-
-  @override
+   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -54,11 +35,11 @@ class _InputPageState extends State<InputPage> {
                     child: GestureDetector(
                   onTap: () {
                     setState(() {
-                      updatecolour(Gender.male);
+                      selectedgender=Gender.male;
                     });
                   },
                   child: reusablecard(
-                    colour: malecardcolour,
+                    colour: selectedgender==Gender.male?kactivecardcolour:kinactivecardcolour,
                     cardchild: iconcontent(
                       icon: FontAwesomeIcons.mars,
                       label: 'Male',
@@ -69,11 +50,11 @@ class _InputPageState extends State<InputPage> {
                     child: GestureDetector(
                      onTap: (){
                        setState(() {
-                         updatecolour(Gender.female);
+                         selectedgender=Gender.female;
                        });
                      },
                       child: reusablecard(
-                                      colour: femalecardcolour,
+                                      colour: selectedgender==Gender.female?kactivecardcolour:kinactivecardcolour,
                                       cardchild: iconcontent(
                       icon: FontAwesomeIcons.venus,
                       label: 'Female',
