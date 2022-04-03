@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'iconcontent.dart';
 import 'reusablecard.dart';
+import 'constants.dart';
 
-const kactivecardcolour = Color(0xff1d1e33);
-const kinactivecardcolour = Color(0xff111328);
-const kbottomcontainercolour = Color(0xffeb1555);
-const kbottomcontainerheight = 80.0;
 enum Gender {
   male,
   female,
@@ -19,6 +16,7 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   Gender? selectedgender;
+  int height = 180;
   Color malecardcolour = kinactivecardcolour;
   Color femalecardcolour = kinactivecardcolour;
 
@@ -30,6 +28,7 @@ class _InputPageState extends State<InputPage> {
           backgroundColor: kactivecardcolour,
         ),
         body: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Expanded(
                 child: Row(
@@ -69,6 +68,41 @@ class _InputPageState extends State<InputPage> {
             Expanded(
                 child: reusablecard(
               colour: kactivecardcolour,
+              cardchild: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'Height',
+                    style: klabeltextstyle,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: <Widget>[
+                      Text(
+                        height.toString(),
+                        style: knumbertextstyle,
+                      ),
+                      Text(
+                        'cm',
+                        style: klabeltextstyle,
+                      ),
+                      
+                    ],
+                  ),
+                  Slider(
+                        value: height.toDouble(),
+                        min: 120.0,
+                        max: 220.0,
+                        activeColor: Color(0xffeb1555),
+                        inactiveColor: Color(0xff8d8e98),
+                        onChanged: (double newvalue) {
+                          setState(() {height=newvalue.round();});
+                        },
+                      )
+                ],
+              ),
             )),
             Expanded(
                 child: Row(

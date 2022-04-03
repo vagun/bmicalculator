@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'constants.dart';
 
-const klabeltextstyle = TextStyle(fontSize: 18, color: Color(0xff8d8e98));
 
 class iconcontent extends StatelessWidget {
   iconcontent({required this.icon, required this.label});
