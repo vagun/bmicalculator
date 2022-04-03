@@ -7,7 +7,10 @@ const kactivecardcolour = Color(0xff1d1e33);
 const kinactivecardcolour = Color(0xff111328);
 const kbottomcontainercolour = Color(0xffeb1555);
 const kbottomcontainerheight = 80.0;
-enum Gender {male,female,}
+enum Gender {
+  male,
+  female,
+}
 
 class InputPage extends StatefulWidget {
   @override
@@ -18,8 +21,8 @@ class _InputPageState extends State<InputPage> {
   Gender? selectedgender;
   Color malecardcolour = kinactivecardcolour;
   Color femalecardcolour = kinactivecardcolour;
-  
-   @override
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -32,35 +35,35 @@ class _InputPageState extends State<InputPage> {
                 child: Row(
               children: <Widget>[
                 Expanded(
-                    child: GestureDetector(
-                  onTap: () {
+                    child: reusablecard(
+                  onPress: () {
                     setState(() {
-                      selectedgender=Gender.male;
+                      selectedgender = Gender.male;
                     });
                   },
-                  child: reusablecard(
-                    colour: selectedgender==Gender.male?kactivecardcolour:kinactivecardcolour,
-                    cardchild: iconcontent(
-                      icon: FontAwesomeIcons.mars,
-                      label: 'Male',
-                    ),
+                  colour: selectedgender == Gender.male
+                      ? kactivecardcolour
+                      : kinactivecardcolour,
+                  cardchild: iconcontent(
+                    icon: FontAwesomeIcons.mars,
+                    label: 'Male',
                   ),
                 )),
                 Expanded(
-                    child: GestureDetector(
-                     onTap: (){
-                       setState(() {
-                         selectedgender=Gender.female;
-                       });
-                     },
-                      child: reusablecard(
-                                      colour: selectedgender==Gender.female?kactivecardcolour:kinactivecardcolour,
-                                      cardchild: iconcontent(
-                      icon: FontAwesomeIcons.venus,
-                      label: 'Female',
-                                      ),
-                                    ),
-                    ))
+                    child: reusablecard(
+                  onPress: () {
+                    setState(() {
+                      selectedgender = Gender.female;
+                    });
+                  },
+                  colour: selectedgender == Gender.female
+                      ? kactivecardcolour
+                      : kinactivecardcolour,
+                  cardchild: iconcontent(
+                    icon: FontAwesomeIcons.venus,
+                    label: 'Female',
+                  ),
+                ))
               ],
             )),
             Expanded(
